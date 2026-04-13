@@ -6,9 +6,6 @@ import { Avatar, Icons, SkeletonPost, EmptyState, Spinner, Modal, formatTime } f
 import { PostCard } from '../components/posts';
 import toast from 'react-hot-toast';
 
-// ════════════════════════════════════════════
-//  PROFILE PAGE
-// ════════════════════════════════════════════
 export function ProfilePage() {
   const { username } = useParams();
   const { user: currentUser, updateLocalUser } = useAuth();
@@ -64,7 +61,6 @@ export function ProfilePage() {
 
   return (
     <div className="page-enter" style={{ maxWidth: 700, margin: '0 auto' }}>
-      {/* Banner */}
       <div className="profile-banner">
         <div style={{
           position: 'absolute', inset: 0,
@@ -73,7 +69,6 @@ export function ProfilePage() {
         }} />
       </div>
 
-      {/* Profile info */}
       <div className="profile-info" style={{ padding: '0 24px 24px' }}>
         <div style={{ display: 'flex', alignItems: 'flex-end', gap: 16 }}>
           <div style={{ border: '3px solid var(--black)', borderRadius: '50%', marginTop: -50, position: 'relative' }}>
@@ -108,7 +103,6 @@ export function ProfilePage() {
         </div>
       </div>
 
-      {/* Bio */}
       <div style={{ padding: '0 24px 20px' }}>
         {profile.bio && (
           <p style={{ fontSize: 14.5, color: 'var(--gray-4)', marginBottom: 12, lineHeight: 1.6 }}>{profile.bio}</p>
@@ -120,7 +114,6 @@ export function ProfilePage() {
         </div>
       </div>
 
-      {/* Stats */}
       <div style={{ display: 'flex', gap: 10, padding: '0 24px 24px' }}>
         {[
           { label: 'Posts', value: profile.postsCount || posts.length },
@@ -136,7 +129,6 @@ export function ProfilePage() {
 
       <div className="divider" style={{ margin: '0 0 20px' }} />
 
-      {/* Tabs */}
       <div style={{ display: 'flex', padding: '0 24px', gap: 4, marginBottom: 20 }}>
         {['posts'].map(tab => (
           <button
@@ -150,7 +142,6 @@ export function ProfilePage() {
         ))}
       </div>
 
-      {/* Posts */}
       <div style={{ padding: '0 24px 40px' }}>
         {postsLoading ? (
           <div className="stagger">{Array.from({ length: 3 }).map((_, i) => <SkeletonPost key={i} />)}</div>
@@ -167,7 +158,6 @@ export function ProfilePage() {
         )}
       </div>
 
-      {/* Edit Profile Modal */}
       <EditProfileModal
         open={showEditModal}
         profile={profile}
@@ -223,9 +213,6 @@ function EditProfileModal({ open, profile, onClose, onUpdated }) {
   );
 }
 
-// ════════════════════════════════════════════
-//  EXPLORE PAGE
-// ════════════════════════════════════════════
 export function ExplorePage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [query, setQuery] = useState(searchParams.get('q') || '');
@@ -278,7 +265,6 @@ export function ExplorePage() {
         <p style={{ color: 'var(--gray-3)', fontSize: 14 }}>Discover people and stories</p>
       </div>
 
-      {/* Search */}
       <form onSubmit={handleSearch} style={{ display: 'flex', gap: 10, marginBottom: 24 }}>
         <div className="input-wrapper" style={{ flex: 1 }}>
           <Icons.Search className="input-icon" style={{ position: 'absolute', left: 14, top: '50%', transform: 'translateY(-50%)', width: 16, height: 16, color: 'var(--gray-2)' }} />
@@ -295,7 +281,6 @@ export function ExplorePage() {
         </button>
       </form>
 
-      {/* Tabs */}
       <div style={{ display: 'flex', gap: 6, marginBottom: 20 }}>
         {['posts', 'people'].map(t => (
           <button
@@ -309,7 +294,6 @@ export function ExplorePage() {
         ))}
       </div>
 
-      {/* Results */}
       {loading ? (
         <div className="stagger">{Array.from({ length: 4 }).map((_, i) => <SkeletonPost key={i} />)}</div>
       ) : tab === 'posts' ? (
@@ -359,9 +343,6 @@ export function ExplorePage() {
   );
 }
 
-// ════════════════════════════════════════════
-//  SETTINGS PAGE
-// ════════════════════════════════════════════
 export function SettingsPage() {
   const { user, logout, updateLocalUser } = useAuth();
   const [form, setForm] = useState({ fullName: user?.fullName || '', bio: '' });

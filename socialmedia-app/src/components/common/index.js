@@ -1,6 +1,5 @@
 import React from 'react';
 
-// ── SVG Icons ────────────────────────────────────────────────
 export const Icons = {
   Home: (p) => (
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" {...p}>
@@ -106,7 +105,6 @@ export const Icons = {
   ),
 };
 
-// ── Avatar ───────────────────────────────────────────────────
 export function Avatar({ user, size = 'md', className = '' }) {
   const initial = user?.fullName?.charAt(0)?.toUpperCase() || user?.userName?.charAt(0)?.toUpperCase() || '?';
   return (
@@ -119,12 +117,10 @@ export function Avatar({ user, size = 'md', className = '' }) {
   );
 }
 
-// ── Spinner ───────────────────────────────────────────────────
 export function Spinner({ size = '' }) {
   return <div className={`spinner ${size === 'sm' ? 'spinner-sm' : ''}`} />;
 }
 
-// ── Skeleton ─────────────────────────────────────────────────
 export function SkeletonPost() {
   return (
     <div className="post-card" style={{padding:22}}>
@@ -142,7 +138,6 @@ export function SkeletonPost() {
   );
 }
 
-// ── Empty State ────────────────────────────────────────────── 
 export function EmptyState({ icon, title, description }) {
   return (
     <div className="empty-state fade-in">
@@ -153,7 +148,6 @@ export function EmptyState({ icon, title, description }) {
   );
 }
 
-// ── Modal ─────────────────────────────────────────────────────
 export function Modal({ open, onClose, title, children }) {
   if (!open) return null;
   return (
@@ -169,7 +163,6 @@ export function Modal({ open, onClose, title, children }) {
   );
 }
 
-// ── Format time ────────────────────────────────────────────── 
 export function formatTime(dateStr) {
   if (!dateStr) return '';
   const diff = Date.now() - new Date(dateStr).getTime();

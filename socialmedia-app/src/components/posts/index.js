@@ -5,9 +5,6 @@ import { postsAPI } from '../../api/api';
 import { Avatar, Icons, formatTime, Spinner, Modal } from '../common';
 import { useAuth } from '../../context/AuthContext';
 
-// ════════════════════════════════════════════
-//  POST CARD
-// ════════════════════════════════════════════
 export function PostCard({ post: initialPost, onDelete }) {
   const { user } = useAuth();
   const [post, setPost] = useState(initialPost);
@@ -112,7 +109,6 @@ export function PostCard({ post: initialPost, onDelete }) {
         )}
       </article>
 
-      {/* Delete confirm */}
       <Modal open={showDeleteConfirm} onClose={() => setShowDeleteConfirm(false)} title="Delete Post">
         <p style={{ color: 'var(--gray-4)', marginBottom: 24 }}>
           Are you sure you want to delete this post? This action cannot be undone.
@@ -123,7 +119,6 @@ export function PostCard({ post: initialPost, onDelete }) {
         </div>
       </Modal>
 
-      {/* Edit modal */}
       <EditPostModal
         open={showEdit}
         post={post}
@@ -134,7 +129,6 @@ export function PostCard({ post: initialPost, onDelete }) {
   );
 }
 
-// ── Edit Post Modal ─────────────────────────────────────────
 function EditPostModal({ open, post, onClose, onUpdated }) {
   const [content, setContent] = useState(post.content);
   const [imageUrl, setImageUrl] = useState(post.imageUrl || '');
@@ -181,9 +175,6 @@ function EditPostModal({ open, post, onClose, onUpdated }) {
   );
 }
 
-// ════════════════════════════════════════════
-//  COMMENT SECTION
-// ════════════════════════════════════════════
 export function CommentSection({ postId, onCommentAdded }) {
   const { user } = useAuth();
   const [comments, setComments] = useState([]);
@@ -257,9 +248,7 @@ export function CommentSection({ postId, onCommentAdded }) {
   );
 }
 
-// ════════════════════════════════════════════
-//  CREATE POST BOX
-// ════════════════════════════════════════════
+
 export function CreatePostBox({ onCreated }) {
   const { user } = useAuth();
   const [content, setContent] = useState('');

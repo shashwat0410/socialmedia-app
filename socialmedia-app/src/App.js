@@ -8,39 +8,32 @@ import FeedPage from './pages/FeedPage';
 import { ProfilePage, ExplorePage, SettingsPage } from './pages/Pages';
 import './index.css';
 
-// ── Protected Route ──────────────────────────────────────────
 function ProtectedRoute({ children }) {
   const { isAuthenticated } = useAuth();
   return isAuthenticated ? children : <Navigate to="/login" replace />;
 }
 
-// ── Public Route (redirect if logged in) ─────────────────────
 function PublicRoute({ children }) {
   const { isAuthenticated } = useAuth();
   return isAuthenticated ? <Navigate to="/" replace /> : children;
 }
 
-// ── App Routes ───────────────────────────────────────────────
 function AppRoutes() {
   return (
     <Routes>
-      {/* Public auth routes */}
       <Route path="/login" element={<PublicRoute><LoginPage /></PublicRoute>} />
       <Route path="/register" element={<PublicRoute><RegisterPage /></PublicRoute>} />
 
-      {/* App routes (layout wraps all) */}
       <Route path="/" element={<AppLayout><FeedPage /></AppLayout>} />
       <Route path="/explore" element={<AppLayout><ExplorePage /></AppLayout>} />
       <Route path="/profile/:username" element={<AppLayout><ProfilePage /></AppLayout>} />
       <Route path="/settings" element={<AppLayout><ProtectedRoute><SettingsPage /></ProtectedRoute></AppLayout>} />
 
-      {/* Fallback */}
       <Route path="*" element={<Navigate to="/" replace />} />
     </Routes>
   );
 }
 
-// ── Root App ─────────────────────────────────────────────────
 export default function App() {
   return (
     <BrowserRouter>

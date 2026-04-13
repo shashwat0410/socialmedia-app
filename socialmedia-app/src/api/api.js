@@ -7,7 +7,6 @@ const api = axios.create({
   headers: { 'Content-Type': 'application/json' },
 });
 
-// ── Request interceptor: attach access token ──────────────
 api.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem('accessToken');
@@ -17,7 +16,6 @@ api.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-// ── Response interceptor: auto refresh on 401 ────────────
 let isRefreshing = false;
 let failedQueue = [];
 
@@ -90,11 +88,7 @@ const clearAuth = () => {
   localStorage.removeItem('user');
 };
 
-// ══════════════════════════════════════════════
-//  API METHODS
-// ══════════════════════════════════════════════
 
-// Auth
 export const authAPI = {
   register: (data) => api.post('/auth/register', data),
   login: (data) => api.post('/auth/login', data),
@@ -102,7 +96,6 @@ export const authAPI = {
   refreshToken: (data) => api.post('/auth/refresh-token', data),
 };
 
-// Posts
 export const postsAPI = {
   getAll: (params) => api.get('/posts', { params }),
   getFeed: (params) => api.get('/posts/feed', { params }),
@@ -115,7 +108,6 @@ export const postsAPI = {
   addComment: (id, data) => api.post(`/posts/${id}/comments`, data),
 };
 
-// Users
 export const usersAPI = {
   search: (params) => api.get('/users/search', { params }),
   getProfile: (username) => api.get(`/users/${username}`),
@@ -126,7 +118,6 @@ export const usersAPI = {
   getFollowing: (userId, params) => api.get(`/users/${userId}/following`, { params }),
 };
 
-// Comments
 export const commentsAPI = {
   update: (id, data) => api.put(`/comments/${id}`, data),
   delete: (id) => api.delete(`/comments/${id}`),

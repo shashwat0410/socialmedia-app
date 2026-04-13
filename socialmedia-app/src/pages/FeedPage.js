@@ -6,7 +6,6 @@ import { Avatar, Icons, SkeletonPost, EmptyState, Spinner } from '../components/
 import { Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
 
-// ── Suggested Users Aside ────────────────────────────────────
 function SuggestedUsers() {
   const { user } = useAuth();
   const [users, setUsers] = useState([]);
@@ -59,7 +58,6 @@ function SuggestedUsers() {
   );
 }
 
-// ── Trending Topics ──────────────────────────────────────────
 function TrendingWidget() {
   const trends = [
     { tag: '#WebDevelopment', count: '2.4K posts' },
@@ -82,9 +80,6 @@ function TrendingWidget() {
   );
 }
 
-// ════════════════════════════════════════════
-//  FEED PAGE
-// ════════════════════════════════════════════
 export default function FeedPage() {
   const { user, isAuthenticated } = useAuth();
   const [posts, setPosts] = useState([]);
@@ -122,9 +117,7 @@ export default function FeedPage() {
 
   return (
     <div className="feed-layout page-enter">
-      {/* Main Feed */}
       <div>
-        {/* Feed toggle */}
         <div style={{ display: 'flex', gap: 6, marginBottom: 16, background: 'var(--black-2)', padding: 6, borderRadius: 'var(--radius-lg)', border: '1px solid rgba(255,255,255,0.05)' }}>
           {isAuthenticated && (
             <button
@@ -144,10 +137,8 @@ export default function FeedPage() {
           </button>
         </div>
 
-        {/* Compose box */}
         {isAuthenticated && <CreatePostBox onCreated={handleNewPost} />}
 
-        {/* Posts */}
         <div className="feed-posts">
           {loading ? (
             Array.from({ length: 4 }).map((_, i) => <SkeletonPost key={i} />)
@@ -166,7 +157,6 @@ export default function FeedPage() {
           )}
         </div>
 
-        {/* Load more */}
         {hasMore && !loading && (
           <div style={{ textAlign: 'center', marginTop: 20, marginBottom: 32 }}>
             <button
@@ -180,7 +170,6 @@ export default function FeedPage() {
         )}
       </div>
 
-      {/* Aside */}
       <aside className="feed-aside">
         {isAuthenticated && (
           <div className="aside-widget" style={{ marginBottom: 16 }}>

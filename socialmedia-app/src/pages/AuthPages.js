@@ -3,7 +3,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { Icons, Spinner } from '../components/common';
 
-// ── Floating particles ───────────────────────────────────────
 function Particles() {
   const dots = Array.from({ length: 18 }, (_, i) => ({
     id: i,
@@ -40,9 +39,6 @@ function Particles() {
   );
 }
 
-// ════════════════════════════════════════════
-//  LOGIN PAGE
-// ════════════════════════════════════════════
 export function LoginPage() {
   const { login, loading } = useAuth();
   const navigate = useNavigate();
@@ -162,9 +158,6 @@ export function LoginPage() {
   );
 }
 
-// ════════════════════════════════════════════
-//  REGISTER PAGE
-// ════════════════════════════════════════════
 export function RegisterPage() {
   const { register, loading } = useAuth();
   const navigate = useNavigate();
